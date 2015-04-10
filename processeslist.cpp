@@ -1,4 +1,5 @@
 #include "processeslist.h"
+#include <QDebug>
 
 ProcessesList::ProcessesList()
 {
@@ -69,6 +70,7 @@ void ProcessesList::produzirListaProcessos(){
         directory->setFilter(QDir::Files);
 
         filename = S->toStdString() + "/status";
+
         arquivo = new std::ifstream(filename.c_str());
 
         if(!arquivo){

@@ -15,12 +15,10 @@ TEMPLATE = app
 SOURCES += main.cpp\
         mainwindow.cpp \
     thread.cpp \
-    processeslist.cpp \
-    tablistaprocessos.cpp
+    processeslist.cpp
 
 HEADERS  += mainwindow.h \
     thread.h \
-    processeslist.h \
-    tablistaprocessos.h
+    processeslist.h
 
 FORMS    += mainwindow.ui
