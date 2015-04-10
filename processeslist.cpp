@@ -9,25 +9,9 @@ ProcessesList::~ProcessesList()
     this->listaProcessos.clear();
 }
 
-void ProcessesList::fillListaProcessos(QStandardItemModel *model){
+std::vector<process> ProcessesList::fillListaProcessos(){
     produzirListaProcessos();
-    QList<QStandardItem*>  L;
-    int sz = this->listaProcessos.size();
-
-    for (int item = 0; item < sz; ++item) {
-        L.clear();
-
-        L << new QStandardItem(QSTRING(this->listaProcessos[item].nome));
-        L << new QStandardItem(QSTRING(this->listaProcessos[item].status));
-        L << new QStandardItem(QSTRING((SSTR(this->listaProcessos[item].pid))));
-        L << new QStandardItem(QSTRING((SSTR(this->listaProcessos[item].ppid))));
-        L << new QStandardItem(QSTRING((this->listaProcessos[item].user)));
-        L << new QStandardItem(QSTRING((SSTR(this->listaProcessos[item].threads))));
-        L << new QStandardItem(QSTRING((SSTR(this->listaProcessos[item].trocas_contexto))));
-
-        model->appendRow(L);
-
-    }
+    return this->listaProcessos;
 }
 
 int ProcessesList::numero_processos(){
@@ -60,6 +44,7 @@ void ProcessesList::produzirListaProcessos(){
     std::string data, filename;
 
     QDir aDir("/proc");
+
     aDir.setFilter(QDir::Dirs);
     QStringList entries = aDir.entryList();
     this->numThreads = 0;

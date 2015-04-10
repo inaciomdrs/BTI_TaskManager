@@ -33,7 +33,7 @@ class ProcessesList
 public:
     ProcessesList();
     ~ProcessesList();
-    void fillListaProcessos(QStandardItemModel *model);
+    std::vector<process> fillListaProcessos();
     int numero_processos();
     int numero_threads();
 
