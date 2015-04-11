@@ -5,13 +5,13 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
-    timerId = startTimer(1000);
+    timerId = startTimer(SLEEP_TIME_START);
 
-    PL = new ProcessesList();
+    TOne = new TabOne(SLEEP_TIME_START);
 
     ui->setupUi(this);
 
-    updateProcessesList();
+    TOne->run();
 
     ui->tableView->setModel(model);
     ui->tableView->setShowGrid(false);
@@ -27,13 +27,7 @@ MainWindow::~MainWindow()
     delete ui;
     delete model;
     delete splitter;
-    delete PL;
-}
-
-void MainWindow::on_dial_valueChanged(int value)
-{
-    killTimer(timerId);
-    timerId = startTimer(value);
+    delete TOne;
 }
 
 void MainWindow::updateProcessesList(){
@@ -42,7 +36,7 @@ void MainWindow::updateProcessesList(){
     headers << tr("Nome") << tr("Status") << tr("PID") << tr("PPID") << tr("Usuário") << tr("Threads") << tr("Trocas de Contexto");
     model->setHorizontalHeaderLabels(headers);
 
-    std::vector<process> listaProcessos = PL->fillListaProcessos();
+    std::vector<process> listaProcessos = TOne->getListaProcessos();
 
     QList<QStandardItem*>  L;
     int sz = listaProcessos.size();
@@ -62,12 +56,23 @@ void MainWindow::updateProcessesList(){
         model->appendRow(L);
     }
 
-    ui->lcdNumber->display(PL->numero_processos());
-    ui->lcdNumber_2->display(PL->numero_threads());
+    ui->lcdNumber->display(TOne->getNumeroProcessos());
+    ui->lcdNumber_2->display(TOne->getNumeroThreads());
 
 }
 
 void MainWindow::timerEvent(QTimerEvent *event){
     updateProcessesList();
     update();
+}
+
+void MainWindow::on_dial_valueChanged(int value)
+{
+    TOne->setSleepTime(value);
+    killTimer(timerId);
+    timerId = startTimer(value);
+}
+
+QStandardItemModel* MainWindow::getModel(){
+    return this->model;
 }

@@ -10,8 +10,7 @@ ProcessesList::~ProcessesList()
     this->listaProcessos.clear();
 }
 
-std::vector<process> ProcessesList::fillListaProcessos(){
-    produzirListaProcessos();
+std::vector<process> ProcessesList::getListaProcessos(){
     return this->listaProcessos;
 }
 

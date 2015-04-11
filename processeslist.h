@@ -33,14 +33,14 @@ class ProcessesList
 public:
     ProcessesList();
     ~ProcessesList();
-    std::vector<process> fillListaProcessos();
+    void produzirListaProcessos();
+    std::vector<process> getListaProcessos();
     int numero_processos();
     int numero_threads();
 
 private:
     std::vector<process> listaProcessos;
     int numThreads;
-    void produzirListaProcessos();
 };
 
 #endif // PROCESSESLIST_H

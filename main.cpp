@@ -1,11 +1,7 @@
-#include "mainwindow.h"
-#include <unistd.h>
-#include <QApplication>
+#include "mainthread.h"
 
 int main(int argc, char *argv[])
 {
-    QApplication app(argc, argv);
-    MainWindow w;
-    w.show();
-    app.exec();
+    MainThread *M = new MainThread(argc,argv);
+    M->run();
 }

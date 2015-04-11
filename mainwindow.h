@@ -8,7 +8,9 @@
 #include <QList>
 #include <QDebug>
 
-#include "processeslist.h"
+#include "tabone.h"
+
+#define SLEEP_TIME_START 1
 
 namespace Ui {
 class MainWindow;
@@ -20,6 +22,8 @@ class MainWindow : public QMainWindow
 
 public:
     explicit MainWindow(QWidget *parent = 0);
+    void updateProcessesList();
+    QStandardItemModel* getModel();
     ~MainWindow();
 
 private slots:
@@ -30,11 +34,8 @@ private:
     Ui::MainWindow *ui;
     QStandardItemModel *model;
     QSplitter *splitter;
-    ProcessesList *PL;
+    TabOne *TOne;
     int timerId;
-
-    void updateProcessesList();
-
 };
 
 #endif // MAINWINDOW_H
