@@ -1,5 +1,4 @@
 #include "processeslist.h"
-#include <QDebug>
 
 ProcessesList::ProcessesList()
 {
@@ -26,7 +25,7 @@ char* getUser(int uid){
     struct passwd *user_info = getpwuid(uid);
 
     if(!user_info){
-       return NULL;
+       return "none";
     }
 
     return user_info->pw_name;
@@ -70,7 +69,7 @@ void ProcessesList::produzirListaProcessos(){
 
         filename = S->toStdString() + "/status";
 
-        arquivo = new std::ifstream(filename.c_str());
+        arquivo = new std::ifstream(filename.c_str());    
 
         if(!arquivo){
             continue;
@@ -100,6 +99,8 @@ void ProcessesList::produzirListaProcessos(){
         *arquivo >> data; // Lê o ppid propriamente dito
         P.ppid = atoi(data.c_str());
 
+        //
+
         do {
             *arquivo >> data;
         } while(data.compare("Uid:") != 0);
@@ -107,6 +108,7 @@ void ProcessesList::produzirListaProcessos(){
         *arquivo >> data; // Lê o uid (id do usuário real) do processo
         int uid = atoi(data.c_str());
         std::string username(getUser(uid));
+
         P.user = username;
 
         do {

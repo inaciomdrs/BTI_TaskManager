@@ -5,13 +5,17 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
-    timerId = startTimer(SLEEP_TIME_START);
-
-    TOne = new TabOne(SLEEP_TIME_START);
-
     ui->setupUi(this);
 
-    TOne->run();
+    timerId = startTimer(SLEEP_TIME_START);
+
+    TOne = new TabOne();
+    TOne->start();
+
+    connect(this,SIGNAL(retrieveUpdatedProcessesList()),TOne,SLOT(timeToProduce()));
+    connect(TOne,SIGNAL(updateGUITable()),this,SLOT(updateProcessesTable()));
+
+    updateProcessesList();
 
     ui->tableView->setModel(model);
     ui->tableView->setShowGrid(false);
@@ -19,6 +23,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->tableView->verticalHeader()->setVisible(false);
     ui->tableView->setSortingEnabled(true);
     ui->tableView->sortByColumn(4, Qt::AscendingOrder);
+
 }
 
 MainWindow::~MainWindow()
@@ -62,17 +67,19 @@ void MainWindow::updateProcessesList(){
 }
 
 void MainWindow::timerEvent(QTimerEvent *event){
-    updateProcessesList();
-    update();
+    emit retrieveUpdatedProcessesList();
 }
 
 void MainWindow::on_dial_valueChanged(int value)
 {
-    TOne->setSleepTime(value);
     killTimer(timerId);
     timerId = startTimer(value);
 }
 
 QStandardItemModel* MainWindow::getModel(){
     return this->model;
+}
+
+void MainWindow::updateProcessesTable(){
+    updateProcessesList();
 }

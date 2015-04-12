@@ -6,21 +6,32 @@
 
 #include <vector>
 #include <unistd.h>
+#include <QDebug>
+#include <QObject>
 
-class TabOne : public Thread
+class TabOne : public QObject, public Thread
 {
+    Q_OBJECT
+
 public:
-    TabOne(int sleepTime);
+    TabOne();
     ~TabOne();
     void run();
     std::vector<process> getListaProcessos();
     int getNumeroProcessos();
     int getNumeroThreads();
-    void setSleepTime(int);
 
 private:
-    int sleepTime;
+    bool go;
     ProcessesList *PL;
+
+public slots:
+    void timeToProduce();
+
+signals:
+    void updateGUITable();
+
 };
 
 #endif // TABONE_H
+

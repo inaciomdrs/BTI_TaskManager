@@ -1,9 +1,10 @@
 #include "tabone.h"
-#include <QDebug>
 
-TabOne::TabOne(int sleepTime): sleepTime(sleepTime)
+TabOne::TabOne()
 {
     PL = new ProcessesList();
+    PL->produzirListaProcessos();
+    this->go = false;
 }
 
 TabOne::~TabOne()
@@ -14,8 +15,11 @@ TabOne::~TabOne()
 void TabOne::run()
 {
     while(true){
-        PL->produzirListaProcessos();
-        sleep(this->sleepTime);
+        if(go){
+            PL->produzirListaProcessos();
+            go = false;
+            emit updateGUITable();
+        }
     }
 }
 
@@ -31,6 +35,6 @@ int TabOne::getNumeroThreads(){
     return this->PL->numero_threads();
 }
 
-void TabOne::setSleepTime(int miliseconds){
-    this->sleepTime = miliseconds;
+void TabOne::timeToProduce(){
+    go = true;
 }

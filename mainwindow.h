@@ -10,7 +10,7 @@
 
 #include "tabone.h"
 
-#define SLEEP_TIME_START 1
+#define SLEEP_TIME_START 2000
 
 namespace Ui {
 class MainWindow;
@@ -29,6 +29,7 @@ public:
 private slots:
     void on_dial_valueChanged(int value);
     void timerEvent(QTimerEvent *event);
+    void updateProcessesTable();
 
 private:
     Ui::MainWindow *ui;
@@ -36,6 +37,10 @@ private:
     QSplitter *splitter;
     TabOne *TOne;
     int timerId;
+
+signals:
+    void retrieveUpdatedProcessesList();
+
 };
 
 #endif // MAINWINDOW_H
