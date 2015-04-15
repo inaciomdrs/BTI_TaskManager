@@ -12,15 +12,9 @@
 #include <string>
 #include <sstream>
 #include <cstring>
+#include <QDebug>
 #include <fstream>
 #include <vector>
-
-// Fonte desse macro: http://rootdirectory.de/wiki/SSTR()
-// Autor: DevSolar (http://stackoverflow.com/users/60281/devsolar)
-#define SSTR( x ) dynamic_cast< std::ostringstream & >( \
-        ( std::ostringstream() << std::dec << x ) ).str()
-
-#define QSTRING(x) QString::fromStdString(x)
 
 typedef struct {
     std::string nome, status, user;

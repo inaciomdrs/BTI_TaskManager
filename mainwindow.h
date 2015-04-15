@@ -10,7 +10,13 @@
 
 #include "tabone.h"
 
-#define SLEEP_TIME_START 2000
+#define SLEEP_TIME_START 1000
+// Fonte desse macro: http://rootdirectory.de/wiki/SSTR()
+// Autor: DevSolar (http://stackoverflow.com/users/60281/devsolar)
+#define SSTR( x ) dynamic_cast< std::ostringstream & >( \
+        ( std::ostringstream() << std::dec << x ) ).str()
+
+#define QSTRING(x) QString::fromStdString(x)
 
 namespace Ui {
 class MainWindow;
@@ -26,21 +32,22 @@ public:
     QStandardItemModel* getModel();
     ~MainWindow();
 
-private slots:
-    void on_dial_valueChanged(int value);
-    void timerEvent(QTimerEvent *event);
-    void updateProcessesTable();
-
 private:
     Ui::MainWindow *ui;
     QStandardItemModel *model;
     QSplitter *splitter;
     TabOne *TOne;
-    int timerId;
+    std::string processName;
 
 signals:
-    void retrieveUpdatedProcessesList();
+    void timeChanged(int newTime);
 
+private slots:
+    void on_dial_valueChanged(int value);
+    void updateProcessesTable();
+
+    void on_pushButton_clicked();
+    void on_tableView_clicked(const QModelIndex &index);
 };
 
 #endif // MAINWINDOW_H

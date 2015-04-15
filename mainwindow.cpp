@@ -7,13 +7,11 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    timerId = startTimer(SLEEP_TIME_START);
-
     TOne = new TabOne();
     TOne->start();
 
-    connect(this,SIGNAL(retrieveUpdatedProcessesList()),TOne,SLOT(timeToProduce()));
     connect(TOne,SIGNAL(updateGUITable()),this,SLOT(updateProcessesTable()));
+    connect(this,SIGNAL(timeChanged(int)),TOne,SLOT(changeTimer(int)));
 
     updateProcessesList();
 
@@ -28,7 +26,6 @@ MainWindow::MainWindow(QWidget *parent) :
 
 MainWindow::~MainWindow()
 {
-    killTimer(timerId);
     delete ui;
     delete model;
     delete splitter;
@@ -66,14 +63,9 @@ void MainWindow::updateProcessesList(){
 
 }
 
-void MainWindow::timerEvent(QTimerEvent *event){
-    emit retrieveUpdatedProcessesList();
-}
-
 void MainWindow::on_dial_valueChanged(int value)
 {
-    killTimer(timerId);
-    timerId = startTimer(value);
+    emit timeChanged(value);
 }
 
 QStandardItemModel* MainWindow::getModel(){
@@ -82,4 +74,15 @@ QStandardItemModel* MainWindow::getModel(){
 
 void MainWindow::updateProcessesTable(){
     updateProcessesList();
+    update();
+}
+
+void MainWindow::on_pushButton_clicked()
+{
+    TOne->killProcess(this->processName);
+}
+
+void MainWindow::on_tableView_clicked(const QModelIndex &index)
+{
+    this->processName = index.data().toString().toStdString();
 }

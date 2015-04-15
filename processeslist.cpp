@@ -25,7 +25,7 @@ char* getUser(int uid){
     struct passwd *user_info = getpwuid(uid);
 
     if(!user_info){
-       return "none";
+        return "none";
     }
 
     return user_info->pw_name;
@@ -50,7 +50,6 @@ void ProcessesList::produzirListaProcessos(){
 
     for( QStringList::ConstIterator entry=entries.begin(); entry!=entries.end(); ++entry)
     {
-
         S = new QString("/proc/" + QString(*entry));
 
         if((S->compare("/proc/.") == 0) || (S->compare("/proc/..") == 0)){
@@ -69,7 +68,7 @@ void ProcessesList::produzirListaProcessos(){
 
         filename = S->toStdString() + "/status";
 
-        arquivo = new std::ifstream(filename.c_str());    
+        arquivo = new std::ifstream(filename.c_str());
 
         if(!arquivo){
             continue;
@@ -84,8 +83,12 @@ void ProcessesList::produzirListaProcessos(){
         *arquivo >> data; // Lê "State:"
         *arquivo >> data; // Lê a sigla
         *arquivo >> data; // Lê o estado propriamente dito
-        data.erase(0,1);
-        data.erase(data.size()-1);
+
+        if(data.size() > 2){
+            data.erase(0,1);
+            data.erase(data.size()-1);
+        }
+
         P.status = data;
 
         do {
@@ -135,5 +138,4 @@ void ProcessesList::produzirListaProcessos(){
         this->listaProcessos.push_back(P);
 
     }
-
 }
