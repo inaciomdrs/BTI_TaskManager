@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "tabthree.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -9,6 +10,10 @@ MainWindow::MainWindow(QWidget *parent) :
 
     TOne = new TabOne();
     TOne->start();
+
+    T3 = new TabThree();
+
+    T3->start();
 
     connect(TOne,SIGNAL(updateGUITable()),this,SLOT(updateProcessesTable()));
     connect(this,SIGNAL(timeChanged(int)),TOne,SLOT(changeTimer(int)));
@@ -22,6 +27,12 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->tableView->setSortingEnabled(true);
     ui->tableView->sortByColumn(4, Qt::AscendingOrder);
 
+    ui->label_7->setText(QSTRING(T3->getNC()));
+    ui->label_8->setText(QSTRING(T3->getNomeSO()));
+    ui->label_9->setText(QSTRING(T3->getNomeSO()));
+
+
+
 }
 
 MainWindow::~MainWindow()
@@ -30,6 +41,7 @@ MainWindow::~MainWindow()
     delete model;
     delete splitter;
     delete TOne;
+    delete T3;
 }
 
 void MainWindow::updateProcessesList(){

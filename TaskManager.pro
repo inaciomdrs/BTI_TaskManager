@@ -17,12 +17,20 @@ SOURCES += main.cpp\
     thread.cpp \
     processeslist.cpp \
     tabone.cpp \
-    semaforo.cpp
+    semaforo.cpp \
+    InfoSO.cpp \
+    tabthree.cpp \
+    NameComputer.cpp \
+    cpuinfo.cpp
 
 HEADERS  += mainwindow.h \
     thread.h \
     processeslist.h \
     tabone.h \
-    semaforo.h
+    semaforo.h \
+    InfoSO.h \
+    tabthree.h \
+    NameComputer.h \
+    cpuinfo.h
 
 FORMS    += mainwindow.ui

@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>2</number>
     </property>
     <widget class="QWidget" name="tab">
      <attribute name="title">
@@ -288,6 +288,10 @@
        <string>Informações de Hardware (CPU, memória principal, memória secundária disponível)</string>
       </property>
      </widget>
+     <zorder>label_6</zorder>
+     <zorder>label_7</zorder>
+     <zorder>label_9</zorder>
+     <zorder>label_8</zorder>
     </widget>
    </widget>
    <widget class="QLCDNumber" name="lcdNumber">

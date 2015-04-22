@@ -9,6 +9,7 @@
 #include <QDebug>
 
 #include "tabone.h"
+#include "tabthree.h"
 
 #define SLEEP_TIME_START 1000
 // Fonte desse macro: http://rootdirectory.de/wiki/SSTR()
@@ -37,6 +38,7 @@ private:
     QStandardItemModel *model;
     QSplitter *splitter;
     TabOne *TOne;
+    TabThree *T3;
     std::string processName;
 
 signals:
