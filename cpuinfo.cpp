@@ -1,19 +1,5 @@
 #include "cpuinfo.h"
 
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <fcntl.h>
-#include <string>
-#include <QString>
-#include <stdio.h>
-#include <unistd.h>
-#include <iostream>
-#include <dirent.h>
-#include <QDir>
-#include <stdlib.h>
-#include <QDebug>
-#include <fstream>
-
 using namespace std;
 
 CpuInfo::CpuInfo()
@@ -28,23 +14,27 @@ const char* CpuInfo::getModel()
 {
     const char* arg;
     int cont = 1;
-    string line;
-    ifstream myfile ("/proc/cpuinfo"); // ifstream = padrão ios:in
-    if (myfile)
+    string line, newline;
+    ifstream fileModelName ("/proc/cpuinfo"); // ifstream = padrão ios:in
+    if (fileModelName)
     {
-        while (! myfile.eof() ) //enquanto end of file for false continua
-        {
-          getline (myfile,line); // como foi aberto em modo texto(padrão)
-            if (cont == 4){
-                getline (myfile,line);
-            }
-          cont++;
+        while(line.compare("name") != 0){
+            fileModelName >> line;
         }
-        myfile.close();
-        arg = line.c_str();
+        fileModelName >> line;
+        fileModelName >> line;
+
+        do {
+            newline += line.c_str();
+            newline += " ";
+            fileModelName >> line;
+        } while(line.compare("stepping") != 0);
+
+        fileModelName.close();
+        arg = newline.c_str();
         return arg;
     } else {
-            cout << "Unable to open MODEL file\n";
+            qDebug() << "Unable to open MODEL file\n";
             return "My Model";
     }
 }
@@ -54,24 +44,26 @@ const char* CpuInfo::getMemoria()
     const char* arg;
     int cont = 1;
     string line;
-    ifstream myfile2 ("/proc/meminfo"); // ifstream = padrão ios:in
-    if (myfile2)
+    ifstream fileMemory ("/proc/meminfo"); // ifstream = padrão ios:in
+    if (fileMemory)
     {
-        while (! myfile2.eof() ) //enquanto end of file for false continua
+        while (! fileMemory.eof() ) //enquanto end of file for false continua
         {
-            getline (myfile2,line); // como foi aberto em modo texto(padrão)
+            getline (fileMemory,line); // como foi aberto em modo texto(padrão)
             while (cont < 4){
-                getline(myfile2, line);
-                cout << line << endl;
+                getline(fileMemory, line);
+                //cout << line << endl;
                 cont++;
             }
             cont++;
         }
-        myfile2.close();
+        fileMemory.close();
+        //qDebug() << QString::fromStdString(line.c_str());
         arg = line.c_str();
+
         return arg;
     } else {
-            cout << "Unable to open file";
+            qDebug() << "Unable to open file";
             return "My Memory";
     } 
 }

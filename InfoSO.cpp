@@ -27,18 +27,18 @@ InfoSO::~InfoSO()
 const char* InfoSO::getSO()
 {
     const char* arg;
-    string line;
-    ifstream myfile ("/proc/version"); // ifstream = padrão ios:in
-    if (myfile)
+    string line, buff;
+    ifstream fileSO ("/proc/version"); // ifstream = padrão ios:in
+    if (fileSO)
     {
-      while (! myfile.eof() )
-      {
-        getline (myfile,line);
-      }
-      myfile.close();
-      arg = line.c_str();
+        while(fileSO >> buff){
+            line += buff;
+            line += " ";
+        }
+        fileSO.close();
+        arg = line.c_str();
     } else {
-        cout << "Unable to open SO NAME file\n";
+        qDebug() << "Unable to open SO NAME file\n";
         arg = "Linux";
     }
     return arg;

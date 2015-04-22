@@ -23,7 +23,7 @@ void TabThree::run()
     this->soName = IS->getSO();
     this->computerName = NC->getNameComputer();
     this->memory = C->getMemoria();
-    this->modelo = C->getModel();
+    this->modelo = C->getModel();    
 }
 
 const char* TabThree::getNC(){

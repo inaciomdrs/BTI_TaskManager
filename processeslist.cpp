@@ -138,4 +138,7 @@ void ProcessesList::produzirListaProcessos(){
         this->listaProcessos.push_back(P);
 
     }
+
+    arquivo->close();
+    delete arquivo;
 }

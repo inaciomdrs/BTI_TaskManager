@@ -2,7 +2,9 @@
 #define CPUINFO_H
 
 #include <fstream>
-#include <iostream>
+//#include <iostream>
+#include <QString>
+#include <QDebug>
  
 using namespace std;
  

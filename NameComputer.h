@@ -1,8 +1,9 @@
 #ifndef NAMECOMPUTER_H
 #define NAMECOMPUTER_H
 
+#include <QString>
+#include <QDebug>
 #include <fstream>
-#include <iostream>
 
 using namespace std;
 

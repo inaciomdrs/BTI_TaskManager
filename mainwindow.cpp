@@ -12,7 +12,6 @@ MainWindow::MainWindow(QWidget *parent) :
     TOne->start();
 
     T3 = new TabThree();
-
     T3->start();
 
     connect(TOne,SIGNAL(updateGUITable()),this,SLOT(updateProcessesTable()));
@@ -29,9 +28,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     ui->label_7->setText(QSTRING(T3->getNC()));
     ui->label_8->setText(QSTRING(T3->getNomeSO()));
-    ui->label_9->setText(QSTRING(T3->getNomeSO()));
-
-
+    ui->label_9->setText(QSTRING(T3->getModelo()));
 
 }
 
