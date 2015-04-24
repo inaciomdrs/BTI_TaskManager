@@ -19,16 +19,15 @@ MainWindow::MainWindow(QWidget *parent) :
 
     updateProcessesList();
 
-    ui->tableView->setModel(model);
+    ui->label_7->setText(QSTRING(T3->getNC()));
+    ui->label_8->setText(QSTRING(T3->getNomeSO()));
+    ui->label_9->setText(QSTRING(T3->getModelo()));
+
     ui->tableView->setShowGrid(false);
     ui->tableView->setAlternatingRowColors(true);
     ui->tableView->verticalHeader()->setVisible(false);
     ui->tableView->setSortingEnabled(true);
     ui->tableView->sortByColumn(4, Qt::AscendingOrder);
-
-    ui->label_7->setText(QSTRING(T3->getNC()));
-    ui->label_8->setText(QSTRING(T3->getNomeSO()));
-    ui->label_9->setText(QSTRING(T3->getModelo()));
 
 }
 
@@ -69,6 +68,9 @@ void MainWindow::updateProcessesList(){
 
     ui->lcdNumber->display(TOne->getNumeroProcessos());
     ui->lcdNumber_2->display(TOne->getNumeroThreads());
+
+    ui->tableView->setModel(model);
+    ui->tableView->sortByColumn(0, Qt::AscendingOrder);
 
 }
 
