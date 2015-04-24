@@ -12,7 +12,6 @@ TabThree::~TabThree()
     delete IS;
     delete NC;
     delete C;
-    delete computerName;
     delete memory;
     delete modelo;
     delete soName;
@@ -26,7 +25,7 @@ void TabThree::run()
     this->modelo = C->getModel();    
 }
 
-const char* TabThree::getNC(){
+std::string TabThree::getNC(){
     return this->computerName;
 }
 

@@ -3,16 +3,17 @@
 
 #include <QString>
 #include <QDebug>
-#include <fstream>
+#include <QFile>
+#include <QTextStream>
 
 using namespace std;
 
 class NameComputer{
 public:
-    const char* namecomputer;
+    std::string namecomputer;
   NameComputer();
   ~NameComputer();
-  const char* getNameComputer();
+  std::string getNameComputer();
 };
 
 #endif;

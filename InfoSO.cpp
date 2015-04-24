@@ -36,10 +36,12 @@ const char* InfoSO::getSO()
             line += " ";
         }
         fileSO.close();
+
+        line.erase(31,line.size()-31);
         arg = line.c_str();
     } else {
         qDebug() << "Unable to open SO NAME file\n";
         arg = "Linux";
-    }
+    }        
     return arg;
 }

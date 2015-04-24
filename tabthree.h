@@ -21,7 +21,7 @@ public:
     TabThree();
     ~TabThree();
     void run();
-    const char* getNC();
+    std::string getNC();
     const char* getMemo();
     const char* getModelo();
     const char* getNomeSO();
@@ -29,7 +29,7 @@ public:
     //void killProcess(std::string);
 
 private:
-    const char *computerName;
+    std::string computerName;
     const char *memory;
     const char *modelo;
     const char *soName;

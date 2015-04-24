@@ -1,10 +1,12 @@
 #ifndef PROCESSESLIST_H
 #define PROCESSESLIST_H
 
-#include <qdir.h>
+#include <QDir>
 #include <QStandardItem>
 #include <QList>
 #include <QString>
+#include <QDebug>
+#include <QFile>
 
 #include <sys/types.h>
 #include <pwd.h>
@@ -12,8 +14,6 @@
 #include <string>
 #include <sstream>
 #include <cstring>
-#include <QDebug>
-#include <fstream>
 #include <vector>
 
 typedef struct {

@@ -83,7 +83,7 @@ QStandardItemModel* MainWindow::getModel(){
 
 void MainWindow::updateProcessesTable(){
     updateProcessesList();
-    update();
+    repaint();
 }
 
 void MainWindow::on_pushButton_clicked()

@@ -8,21 +8,17 @@ NameComputer::NameComputer(){
 NameComputer::~NameComputer(){
 }
 
-const char* NameComputer::getNameComputer(){
+std::string NameComputer::getNameComputer(){
     string line, newline;
-    const char* arg;
-    ifstream filePCName ("/etc/hostname");
-    if (filePCName)
-    {
-        while(filePCName >> line){
-            newline += line;
-            newline += " ";
-        }
-        filePCName.close();
-        arg = newline.c_str();
-        qDebug() << QString::fromStdString(arg);
-    } else {
-        arg = "My PC";
+    QFile filePCName("/etc/hostname");
+
+    if(!filePCName.open(QIODevice::ReadOnly | QIODevice::Text)){
+        return "";
     }
-    return arg;
+
+    QTextStream buffer(&filePCName);
+
+    QString s = buffer.readLine();
+
+    return s.toStdString();
 }
