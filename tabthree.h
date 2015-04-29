@@ -1,26 +1,22 @@
 #ifndef TABTHREE_H
 #define TABTHREE_H
 
-#include "thread.h"
 #include "InfoSO.h"
 #include "NameComputer.h"
 #include "cpuinfo.h"
 
 #include <vector>
-#include <unistd.h>
-#include <signal.h>
 
 #include <QDebug>
 
 #define DEFAULT_TIMER 1000
 
-class TabThree : public Thread
+class TabThree
 {
 
 public:
     TabThree();
     ~TabThree();
-    void run();
     std::string getNC();
     const char* getMemo();
     const char* getModelo();

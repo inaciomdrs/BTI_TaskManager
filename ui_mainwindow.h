@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created by: Qt User Interface Compiler version 5.4.1
+** Created by: Qt User Interface Compiler version 5.4.0
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -28,6 +28,7 @@
 #include <QtWidgets/QTableView>
 #include <QtWidgets/QToolBar>
 #include <QtWidgets/QWidget>
+#include "qcustomplot.h"
 
 QT_BEGIN_NAMESPACE
 
@@ -39,14 +40,16 @@ public:
     QWidget *tab;
     QTableView *tableView;
     QWidget *tab_2;
+    QCustomPlot *grafico1;
+    QCustomPlot *grafico2;
     QGroupBox *groupBox;
-    QProgressBar *progressBar;
+    QProgressBar *pb_cpu0_2;
     QGroupBox *groupBox_2;
-    QProgressBar *progressBar_2;
-    QGroupBox *groupBox_3;
-    QProgressBar *progressBar_3;
+    QProgressBar *pb_cpu1_2;
     QGroupBox *groupBox_4;
-    QProgressBar *progressBar_4;
+    QProgressBar *pb_swap;
+    QGroupBox *groupBox_3;
+    QProgressBar *pb_memoria;
     QGroupBox *groupBox_5;
     QLabel *label_3;
     QLineEdit *lineEdit;
@@ -59,13 +62,13 @@ public:
     QLabel *label_7;
     QLabel *label_8;
     QLabel *label_9;
-    QLCDNumber *lcdNumber;
-    QLabel *label;
-    QPushButton *pushButton;
     QDial *dial;
     QLabel *label_2;
-    QLCDNumber *lcdNumber_2;
     QLabel *label_10;
+    QLCDNumber *lcdNumber;
+    QLCDNumber *lcdNumber_2;
+    QLabel *label;
+    QPushButton *pushButton;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -74,51 +77,57 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
-        MainWindow->resize(848, 504);
+        MainWindow->resize(1055, 654);
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         tabWidget = new QTabWidget(centralWidget);
         tabWidget->setObjectName(QStringLiteral("tabWidget"));
-        tabWidget->setGeometry(QRect(20, 30, 811, 271));
+        tabWidget->setGeometry(QRect(10, 30, 1031, 481));
         tab = new QWidget();
         tab->setObjectName(QStringLiteral("tab"));
         tableView = new QTableView(tab);
         tableView->setObjectName(QStringLiteral("tableView"));
-        tableView->setGeometry(QRect(20, 20, 771, 211));
+        tableView->setGeometry(QRect(20, 10, 1001, 431));
         tabWidget->addTab(tab, QString());
         tab_2 = new QWidget();
         tab_2->setObjectName(QStringLiteral("tab_2"));
+        grafico1 = new QCustomPlot(tab_2);
+        grafico1->setObjectName(QStringLiteral("grafico1"));
+        grafico1->setGeometry(QRect(70, 10, 941, 121));
+        grafico2 = new QCustomPlot(tab_2);
+        grafico2->setObjectName(QStringLiteral("grafico2"));
+        grafico2->setGeometry(QRect(70, 150, 941, 121));
         groupBox = new QGroupBox(tab_2);
         groupBox->setObjectName(QStringLiteral("groupBox"));
-        groupBox->setGeometry(QRect(20, 20, 171, 61));
-        progressBar = new QProgressBar(groupBox);
-        progressBar->setObjectName(QStringLiteral("progressBar"));
-        progressBar->setGeometry(QRect(20, 20, 118, 23));
-        progressBar->setValue(24);
+        groupBox->setGeometry(QRect(70, 280, 141, 61));
+        pb_cpu0_2 = new QProgressBar(groupBox);
+        pb_cpu0_2->setObjectName(QStringLiteral("pb_cpu0_2"));
+        pb_cpu0_2->setGeometry(QRect(20, 20, 118, 23));
+        pb_cpu0_2->setValue(24);
         groupBox_2 = new QGroupBox(tab_2);
         groupBox_2->setObjectName(QStringLiteral("groupBox_2"));
-        groupBox_2->setGeometry(QRect(20, 100, 171, 61));
-        progressBar_2 = new QProgressBar(groupBox_2);
-        progressBar_2->setObjectName(QStringLiteral("progressBar_2"));
-        progressBar_2->setGeometry(QRect(20, 20, 118, 23));
-        progressBar_2->setValue(24);
-        groupBox_3 = new QGroupBox(tab_2);
-        groupBox_3->setObjectName(QStringLiteral("groupBox_3"));
-        groupBox_3->setGeometry(QRect(220, 20, 151, 80));
-        progressBar_3 = new QProgressBar(groupBox_3);
-        progressBar_3->setObjectName(QStringLiteral("progressBar_3"));
-        progressBar_3->setGeometry(QRect(10, 30, 118, 23));
-        progressBar_3->setValue(24);
+        groupBox_2->setGeometry(QRect(220, 280, 141, 51));
+        pb_cpu1_2 = new QProgressBar(groupBox_2);
+        pb_cpu1_2->setObjectName(QStringLiteral("pb_cpu1_2"));
+        pb_cpu1_2->setGeometry(QRect(10, 20, 118, 23));
+        pb_cpu1_2->setValue(24);
         groupBox_4 = new QGroupBox(tab_2);
         groupBox_4->setObjectName(QStringLiteral("groupBox_4"));
-        groupBox_4->setGeometry(QRect(220, 110, 151, 61));
-        progressBar_4 = new QProgressBar(groupBox_4);
-        progressBar_4->setObjectName(QStringLiteral("progressBar_4"));
-        progressBar_4->setGeometry(QRect(10, 20, 118, 23));
-        progressBar_4->setValue(24);
+        groupBox_4->setGeometry(QRect(70, 330, 151, 61));
+        pb_swap = new QProgressBar(groupBox_4);
+        pb_swap->setObjectName(QStringLiteral("pb_swap"));
+        pb_swap->setGeometry(QRect(20, 20, 118, 23));
+        pb_swap->setValue(24);
+        groupBox_3 = new QGroupBox(tab_2);
+        groupBox_3->setObjectName(QStringLiteral("groupBox_3"));
+        groupBox_3->setGeometry(QRect(230, 330, 131, 51));
+        pb_memoria = new QProgressBar(groupBox_3);
+        pb_memoria->setObjectName(QStringLiteral("pb_memoria"));
+        pb_memoria->setGeometry(QRect(0, 20, 118, 23));
+        pb_memoria->setValue(24);
         groupBox_5 = new QGroupBox(tab_2);
         groupBox_5->setObjectName(QStringLiteral("groupBox_5"));
-        groupBox_5->setGeometry(QRect(580, 20, 211, 171));
+        groupBox_5->setGeometry(QRect(540, 270, 171, 171));
         label_3 = new QLabel(groupBox_5);
         label_3->setObjectName(QStringLiteral("label_3"));
         label_3->setGeometry(QRect(10, 20, 171, 16));
@@ -148,37 +157,41 @@ public:
         label_7->setGeometry(QRect(140, 60, 171, 16));
         label_8 = new QLabel(tab_3);
         label_8->setObjectName(QStringLiteral("label_8"));
-        label_8->setGeometry(QRect(140, 80, 301, 16));
+        label_8->setGeometry(QRect(140, 80, 651, 16));
         label_9 = new QLabel(tab_3);
         label_9->setObjectName(QStringLiteral("label_9"));
         label_9->setGeometry(QRect(140, 100, 631, 16));
         tabWidget->addTab(tab_3, QString());
-        lcdNumber = new QLCDNumber(centralWidget);
-        lcdNumber->setObjectName(QStringLiteral("lcdNumber"));
-        lcdNumber->setGeometry(QRect(10, 303, 64, 23));
-        lcdNumber->setProperty("intValue", QVariant(2));
-        label = new QLabel(centralWidget);
-        label->setObjectName(QStringLiteral("label"));
-        label->setGeometry(QRect(89, 306, 151, 16));
-        pushButton = new QPushButton(centralWidget);
-        pushButton->setObjectName(QStringLiteral("pushButton"));
-        pushButton->setGeometry(QRect(680, 310, 151, 23));
+        label_6->raise();
+        label_7->raise();
+        label_9->raise();
+        label_8->raise();
         dial = new QDial(centralWidget);
         dial->setObjectName(QStringLiteral("dial"));
-        dial->setGeometry(QRect(780, -10, 50, 64));
+        dial->setGeometry(QRect(990, -10, 50, 64));
         label_2 = new QLabel(centralWidget);
         label_2->setObjectName(QStringLiteral("label_2"));
-        label_2->setGeometry(QRect(680, 10, 91, 20));
-        lcdNumber_2 = new QLCDNumber(centralWidget);
-        lcdNumber_2->setObjectName(QStringLiteral("lcdNumber_2"));
-        lcdNumber_2->setGeometry(QRect(10, 330, 64, 23));
+        label_2->setGeometry(QRect(900, 10, 91, 20));
         label_10 = new QLabel(centralWidget);
         label_10->setObjectName(QStringLiteral("label_10"));
-        label_10->setGeometry(QRect(90, 330, 151, 16));
+        label_10->setGeometry(QRect(80, 560, 151, 16));
+        lcdNumber = new QLCDNumber(centralWidget);
+        lcdNumber->setObjectName(QStringLiteral("lcdNumber"));
+        lcdNumber->setGeometry(QRect(10, 530, 64, 23));
+        lcdNumber->setProperty("intValue", QVariant(2));
+        lcdNumber_2 = new QLCDNumber(centralWidget);
+        lcdNumber_2->setObjectName(QStringLiteral("lcdNumber_2"));
+        lcdNumber_2->setGeometry(QRect(10, 560, 64, 23));
+        label = new QLabel(centralWidget);
+        label->setObjectName(QStringLiteral("label"));
+        label->setGeometry(QRect(80, 530, 151, 16));
+        pushButton = new QPushButton(centralWidget);
+        pushButton->setObjectName(QStringLiteral("pushButton"));
+        pushButton->setGeometry(QRect(250, 530, 151, 23));
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 848, 25));
+        menuBar->setGeometry(QRect(0, 0, 1055, 25));
         MainWindow->setMenuBar(menuBar);
         mainToolBar = new QToolBar(MainWindow);
         mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
@@ -189,7 +202,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        tabWidget->setCurrentIndex(2);
+        tabWidget->setCurrentIndex(1);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -201,8 +214,8 @@ public:
         tabWidget->setTabText(tabWidget->indexOf(tab), QApplication::translate("MainWindow", "Lista de Processos", 0));
         groupBox->setTitle(QApplication::translate("MainWindow", "CPU 1", 0));
         groupBox_2->setTitle(QApplication::translate("MainWindow", "CPU 2", 0));
-        groupBox_3->setTitle(QApplication::translate("MainWindow", "Mem\303\263ria", 0));
         groupBox_4->setTitle(QApplication::translate("MainWindow", "Swap", 0));
+        groupBox_3->setTitle(QApplication::translate("MainWindow", "Mem\303\263ria", 0));
         groupBox_5->setTitle(QApplication::translate("MainWindow", "CPU Info", 0));
         label_3->setText(QApplication::translate("MainWindow", "Tempo de Uso de CPU", 0));
         label_4->setText(QApplication::translate("MainWindow", "Tempo Ocioso", 0));
@@ -213,10 +226,10 @@ public:
         label_8->setText(QApplication::translate("MainWindow", "Informa\303\247\303\265es do SO (nome, kernel)", 0));
         label_9->setText(QApplication::translate("MainWindow", "Informa\303\247\303\265es de Hardware (CPU, mem\303\263ria principal, mem\303\263ria secund\303\241ria dispon\303\255vel)", 0));
         tabWidget->setTabText(tabWidget->indexOf(tab_3), QApplication::translate("MainWindow", "Sistema", 0));
-        label->setText(QApplication::translate("MainWindow", "N\303\272mero de processos", 0));
-        pushButton->setText(QApplication::translate("MainWindow", "Finalizar Processo", 0));
         label_2->setText(QApplication::translate("MainWindow", "Atualiza\303\247\303\243o", 0));
         label_10->setText(QApplication::translate("MainWindow", "N\303\272mero de threads", 0));
+        label->setText(QApplication::translate("MainWindow", "N\303\272mero de processos", 0));
+        pushButton->setText(QApplication::translate("MainWindow", "Finalizar Processo", 0));
     } // retranslateUi
 
 };

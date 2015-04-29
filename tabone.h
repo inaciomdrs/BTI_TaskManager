@@ -11,7 +11,7 @@
 #include <QDebug>
 #include <QObject>
 
-#define DEFAULT_TIMER 1000
+#define DEFAULT_TIMER 100
 
 class TabOne : public QObject, public Thread
 {

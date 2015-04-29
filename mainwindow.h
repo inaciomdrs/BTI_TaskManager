@@ -10,6 +10,7 @@
 
 #include "tabone.h"
 #include "tabthree.h"
+#include "desempenho.h"
 
 #define SLEEP_TIME_START 1000
 // Fonte desse macro: http://rootdirectory.de/wiki/SSTR()
@@ -30,6 +31,7 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     void updateProcessesList();
+    void updateResourceUseGraphics();
     QStandardItemModel* getModel();
     ~MainWindow();
 
@@ -39,6 +41,7 @@ private:
     QSplitter *splitter;
     TabOne *TOne;
     TabThree *T3;
+    Desempenho *d;
     std::string processName;
 
 signals:

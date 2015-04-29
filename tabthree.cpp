@@ -5,6 +5,11 @@ TabThree::TabThree()
     IS = new InfoSO();
     NC = new NameComputer();
     C = new CpuInfo();
+
+    this->soName = IS->getSO();
+    this->computerName = NC->getNameComputer();
+    this->memory = C->getMemoria();
+    this->modelo = C->getModel();
 }
 
 TabThree::~TabThree()
@@ -15,14 +20,6 @@ TabThree::~TabThree()
     delete memory;
     delete modelo;
     delete soName;
-}
-
-void TabThree::run()
-{
-    this->soName = IS->getSO();
-    this->computerName = NC->getNameComputer();
-    this->memory = C->getMemoria();
-    this->modelo = C->getModel();    
 }
 
 std::string TabThree::getNC(){

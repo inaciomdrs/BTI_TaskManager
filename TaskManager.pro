@@ -6,7 +6,7 @@
 
 QT       += core gui
 
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets printsupport
 
 TARGET = TaskManager
 TEMPLATE = app
@@ -21,7 +21,9 @@ SOURCES += main.cpp\
     InfoSO.cpp \
     tabthree.cpp \
     NameComputer.cpp \
-    cpuinfo.cpp
+    cpuinfo.cpp \
+    qcustomplot.cpp \
+    desempenho.cpp
 
 HEADERS  += mainwindow.h \
     thread.h \
@@ -31,6 +33,8 @@ HEADERS  += mainwindow.h \
     InfoSO.h \
     tabthree.h \
     NameComputer.h \
-    cpuinfo.h
+    cpuinfo.h \
+    qcustomplot.h \
+    desempenho.h
 
 FORMS    += mainwindow.ui
